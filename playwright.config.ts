@@ -8,7 +8,7 @@ export default defineConfig({
   workers: process.env.CI ? 1 : undefined,
   reporter: process.env.CI ? [['html', {open: 'never'}], ['github']] : 'list',
   use: {
-    baseURL: 'http://127.0.0.1:3000',
+    baseURL: 'http://127.0.0.1:3100',
     trace: 'on-first-retry',
     screenshot: 'only-on-failure',
     locale: 'ja-JP',
@@ -22,8 +22,9 @@ export default defineConfig({
     }
   ],
   webServer: {
-    command: 'pnpm dev',
-    url: 'http://127.0.0.1:3000/ja',
+    command: 'pnpm exec next dev --port 3100',
+    env: {...process.env, NEXT_DIST_DIR: '.next-e2e'},
+    url: 'http://127.0.0.1:3100/ja',
     reuseExistingServer: !process.env.CI,
     timeout: 120_000
   }

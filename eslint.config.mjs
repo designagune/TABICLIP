@@ -11,6 +11,7 @@ export default defineConfig([
   prettier,
   globalIgnores([
     '.next/**',
+    '.next-e2e/**',
     'storybook-static/**',
     'coverage/**',
     'playwright-report/**',

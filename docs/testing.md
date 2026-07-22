@@ -7,6 +7,7 @@
 - TanStack Query integration tests use a fresh client and verify loading, success, mutation, and invalidation.
 - Storybook catalogs 12 product primitives/states with Japanese content and the accessibility addon set to fail on violations.
 - Playwright runs the complete trip → URL/image clip → place → itinerary → travel-mode flow at 390×844, plus keyboard/error smoke checks.
+- Playwright starts its mock-mode web server on port 3100 so a developer's real Supabase server on port 3000 cannot be reused accidentally.
 - Four screenshots cover collection, place grouping, itinerary, and travel mode.
 - Browser time is fixed to 2026-07-21 in E2E tests so date-driven mock data and visual snapshots remain deterministic.
 - pgTAP asserts explicit Data API grants plus owner/member/stranger RLS behavior against local Supabase.

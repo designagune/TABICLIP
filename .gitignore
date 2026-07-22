@@ -4,6 +4,7 @@ node_modules/
 
 # Next.js and Storybook
 .next/
+.next-e2e/
 out/
 storybook-static/
 

@@ -1,7 +1,7 @@
 begin;
 
 create extension if not exists pgtap with schema extensions;
-select plan(15);
+select plan(16);
 
 insert into auth.users (
   id, instance_id, aud, role, email, encrypted_password, email_confirmed_at,
@@ -75,6 +75,17 @@ select results_eq(
   'select count(*) from public.trips',
   'values (1::bigint)',
   'owner can view their trip'
+);
+select lives_ok(
+  $$insert into public.trips (
+    id, owner_id, title, origin_country_code, destination_country_code,
+    language, start_date, end_date
+  ) values (
+    'eeeeeeee-eeee-eeee-eeee-eeeeeeeeeeee',
+    '11111111-1111-1111-1111-111111111111',
+    'Owner created trip', 'KR', 'JP', 'ko', '2026-08-01', '2026-08-03'
+  ) returning id$$,
+  'owner can create a trip and read the returned row'
 );
 select lives_ok(
   $$update public.trips set title = 'Owner updated' where id = 'aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa'$$,
