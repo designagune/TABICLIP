@@ -1,0 +1,35 @@
+{
+  "title": "予約",
+  "eyebrow": "RESERVATIONS",
+  "description": "ホテルやチケットの大切な情報を、旅ごとに保管します。",
+  "new": "予約を追加",
+  "formTitle": "予約情報",
+  "name": "予約名",
+  "type": "種類",
+  "date": "日付",
+  "time": "時間",
+  "number": "予約番号",
+  "bookedName": "予約者名",
+  "address": "住所",
+  "url": "元のURL",
+  "deadline": "キャンセル期限",
+  "memo": "メモ",
+  "save": "予約を保存",
+  "deleteTitle": "この予約を削除しますか？",
+  "deleteBody": "削除した予約情報は元に戻せません。",
+  "emptyTitle": "予約情報はまだありません",
+  "emptyBody": "ホテル、交通、レストランなどの確認情報をまとめられます。",
+  "paymentPaid": "支払い済み",
+  "paymentPending": "未払い",
+  "types": {
+    "stay": "宿泊",
+    "transport": "交通",
+    "food": "レストラン",
+    "activity": "体験・チケット",
+    "other": "その他"
+  },
+  "validation": {
+    "titleRequired": "予約名を入力してください",
+    "dateRequired": "予約日を入力してください"
+  }
+}

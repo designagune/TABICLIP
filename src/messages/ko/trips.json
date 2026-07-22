@@ -1,0 +1,50 @@
+{
+  "listTitle": "나의 여행",
+  "listEyebrow": "MY TRIPS",
+  "newTrip": "새 여행 만들기",
+  "upcoming": "다가오는 여행",
+  "active": "여행 중",
+  "past": "지난 여행",
+  "emptyTitle": "첫 여행을 만들어 보세요",
+  "emptyBody": "날짜를 정하면 발견한 장소를 클립할 수 있습니다.",
+  "days": "{count}일",
+  "placesCount": "장소 {count}개",
+  "form": {
+    "eyebrow": "새 여행",
+    "title": "여행 만들기",
+    "description": "나중에 바꿀 수 있어요. 우선 여행지와 날짜만 정해도 충분합니다.",
+    "name": "여행 이름",
+    "namePlaceholder": "봄 서울, 3박 4일",
+    "origin": "출발 국가",
+    "destination": "여행 국가",
+    "language": "여행에서 사용할 언어",
+    "startDate": "출발일",
+    "endDate": "귀국일",
+    "submit": "여행 만들기",
+    "saving": "여행을 만들고 있어요…"
+  },
+  "countries": {
+    "JP": "일본",
+    "KR": "한국"
+  },
+  "languages": {
+    "ja": "일본어",
+    "ko": "한국어"
+  },
+  "validation": {
+    "titleRequired": "여행 이름을 2자 이상 입력해 주세요",
+    "countryRequired": "국가를 선택해 주세요",
+    "dateRequired": "날짜를 선택해 주세요",
+    "dateOrder": "귀국일은 출발일 이후여야 합니다"
+  },
+  "home": {
+    "nextTrip": "다음 여행까지",
+    "daysLeft": "{count}일 남음",
+    "collection": "정리 전 클립",
+    "places": "가고 싶은 장소",
+    "schedule": "일정에 추가됨",
+    "startCollecting": "가고 싶은 곳 클립",
+    "todayMode": "오늘의 여행 모드",
+    "reservations": "예약"
+  }
+}

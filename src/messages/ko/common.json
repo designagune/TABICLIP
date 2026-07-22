@@ -1,0 +1,84 @@
+{
+  "brandTagline": "발견한 여행을, 실제로 떠날 수 있는 여행으로.",
+  "skipToContent": "본문으로 이동",
+  "language": "언어",
+  "japanese": "日本語",
+  "korean": "한국어",
+  "nav": {
+    "trips": "여행 목록",
+    "settings": "설정",
+    "home": "홈",
+    "inbox": "클립",
+    "places": "장소",
+    "schedule": "일정",
+    "today": "오늘"
+  },
+  "actions": {
+    "save": "저장",
+    "cancel": "취소",
+    "close": "닫기",
+    "retry": "다시 시도",
+    "back": "뒤로",
+    "next": "다음",
+    "delete": "삭제",
+    "edit": "수정",
+    "open": "열기",
+    "copy": "복사",
+    "copied": "복사했습니다",
+    "add": "추가",
+    "continue": "계속"
+  },
+  "states": {
+    "loading": "불러오는 중…",
+    "empty": "아직 아무것도 없습니다",
+    "error": "불러오지 못했습니다",
+    "offline": "오프라인입니다. 저장된 화면만 확인할 수 있습니다.",
+    "onlineAgain": "온라인으로 돌아왔습니다"
+  },
+  "landing": {
+    "eyebrow": "한국 여행을 위한 트래블 클립",
+    "title": "저장만 해둔 ‘가고 싶다’를, 여행의 하루로.",
+    "description": "SNS와 블로그에서 찾은 장소를 한곳에 모아 지역과 날짜로 정리하세요. 현지에서는 오늘 일정만 빠르게 확인할 수 있습니다.",
+    "primaryCta": "데모 시작하기",
+    "secondaryCta": "로그인",
+    "flowTitle": "클립부터 여행 일정까지, 쉬운 4단계",
+    "step1Title": "발견",
+    "step1Body": "URL·이미지·메모를 그대로 저장",
+    "step2Title": "정리",
+    "step2Body": "장소명과 주소를 직접 확인해 정리",
+    "step3Title": "계획",
+    "step3Body": "가고 싶은 날짜에 추가하고 순서를 결정",
+    "step4Title": "현장에서 사용",
+    "step4Body": "오늘의 주소와 다음 일정을 크게 표시",
+    "previewLabel": "오늘의 서울",
+    "previewBadge": "서울 · 2일차",
+    "previewPlace": "성수동・ソンス",
+    "previewNext": "다음 일정 14:30"
+  },
+  "login": {
+    "title": "여행의 다음을 저장하세요",
+    "description": "이메일로 도착하는 안전한 링크로 로그인합니다. 비밀번호는 필요하지 않습니다.",
+    "email": "이메일 주소",
+    "emailPlaceholder": "you@example.com",
+    "submit": "로그인 링크 보내기",
+    "sentTitle": "이메일을 확인해 주세요",
+    "sentBody": "로그인 링크를 보냈습니다. 링크는 일정 시간이 지나면 만료됩니다.",
+    "mock": "데모 모드로 계속",
+    "invalidEmail": "올바른 이메일 주소를 입력해 주세요",
+    "failed": "전송하지 못했습니다. 잠시 후 다시 시도해 주세요."
+  },
+  "install": {
+    "title": "홈 화면에 추가",
+    "body": "Safari 공유 메뉴에서 ‘홈 화면에 추가’를 선택하면 여행 중에도 바로 열 수 있습니다.",
+    "dismiss": "나중에",
+    "browser": "Safari"
+  },
+  "settings": {
+    "title": "설정",
+    "dataMode": "데이터 모드",
+    "mockDescription": "이 기기에서만 쓰는 데모 데이터입니다. 새로고침하면 초기 상태로 돌아갑니다.",
+    "supabaseDescription": "Supabase에 연결해 데이터를 저장합니다.",
+    "pwa": "앱으로 사용하기",
+    "privacy": "예약 정보와 이미지는 공개 캐시에 저장하지 않습니다."
+  }
+}

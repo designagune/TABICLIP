@@ -1,0 +1,31 @@
+{
+  "title": "일정",
+  "eyebrow": "ITINERARY",
+  "description": "너무 빽빽하지 않게, 여행지에서 움직일 수 있는 순서로 정리하세요.",
+  "day": "{date, date, short}",
+  "dayNumber": "DAY {number}",
+  "unscheduled": "시간 미정",
+  "startTime": "시작 시간",
+  "date": "날짜",
+  "memo": "일정 메모",
+  "add": "이 날짜에 추가",
+  "added": "일정에 추가했습니다",
+  "moveUp": "한 칸 위로 이동",
+  "moveDown": "한 칸 아래로 이동",
+  "emptyTitle": "이날은 아직 비어 있어요",
+  "emptyBody": "장소 목록에서 가고 싶은 곳을 추가해 보세요.",
+  "today": {
+    "title": "오늘의 여행",
+    "eyebrow": "TRAVEL MODE",
+    "date": "오늘 {date, date, long}",
+    "current": "지금・다음 일정",
+    "next": "그다음",
+    "address": "현지 주소",
+    "reservation": "예약 정보 확인",
+    "openMap": "지도 열기",
+    "copyAddress": "주소 복사",
+    "noPlanTitle": "오늘 일정이 아직 없습니다",
+    "noPlanBody": "일정 화면에서 장소를 추가하면 여기서 바로 확인할 수 있습니다.",
+    "offlineNotice": "오프라인에서는 최신 변경사항이 반영되지 않을 수 있습니다."
+  }
+}

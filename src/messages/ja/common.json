@@ -1,0 +1,84 @@
+{
+  "brandTagline": "見つけた旅を、ちゃんと行ける旅へ。",
+  "skipToContent": "本文へ移動",
+  "language": "言語",
+  "japanese": "日本語",
+  "korean": "한국어",
+  "nav": {
+    "trips": "旅の一覧",
+    "settings": "設定",
+    "home": "ホーム",
+    "inbox": "クリップ",
+    "places": "スポット",
+    "schedule": "日程",
+    "today": "今日"
+  },
+  "actions": {
+    "save": "保存する",
+    "cancel": "キャンセル",
+    "close": "閉じる",
+    "retry": "もう一度試す",
+    "back": "戻る",
+    "next": "次へ",
+    "delete": "削除",
+    "edit": "編集",
+    "open": "開く",
+    "copy": "コピー",
+    "copied": "コピーしました",
+    "add": "追加",
+    "continue": "続ける"
+  },
+  "states": {
+    "loading": "読み込み中…",
+    "empty": "まだ何もありません",
+    "error": "読み込めませんでした",
+    "offline": "オフラインです。保存済みの画面だけ確認できます。",
+    "onlineAgain": "オンラインに戻りました"
+  },
+  "landing": {
+    "eyebrow": "韓国旅行のためのトラベルクリップ",
+    "title": "保存しただけの「行きたい」を、旅の一日に。",
+    "description": "SNSやブログで見つけた場所をひとつに集めて、地域と日付で整理。現地では今日の予定だけをすぐ確認できます。",
+    "primaryCta": "デモをはじめる",
+    "secondaryCta": "ログイン",
+    "flowTitle": "クリップから旅程まで、迷わず4ステップ",
+    "step1Title": "見つける",
+    "step1Body": "URL・画像・メモをそのまま保存",
+    "step2Title": "まとめる",
+    "step2Body": "場所名と住所を自分で確認して整理",
+    "step3Title": "組み立てる",
+    "step3Body": "行きたい日に追加して順番を決定",
+    "step4Title": "旅先で使う",
+    "step4Body": "今日の住所と次の予定を大きく表示",
+    "previewLabel": "今日のソウル",
+    "previewBadge": "ソウル · 2日目",
+    "previewPlace": "聖水洞・ソンス",
+    "previewNext": "次は 14:30"
+  },
+  "login": {
+    "title": "旅の続きを保存",
+    "description": "メールに届く安全なリンクでログインします。パスワードは不要です。",
+    "email": "メールアドレス",
+    "emailPlaceholder": "you@example.com",
+    "submit": "ログインリンクを送る",
+    "sentTitle": "メールを確認してください",
+    "sentBody": "ログインリンクを送信しました。リンクは一定時間で期限切れになります。",
+    "mock": "デモモードで続ける",
+    "invalidEmail": "正しいメールアドレスを入力してください",
+    "failed": "送信できませんでした。時間をおいて再度お試しください。"
+  },
+  "install": {
+    "title": "ホーム画面に追加",
+    "body": "Safariの共有メニューから「ホーム画面に追加」を選ぶと、旅先ですぐ開けます。",
+    "dismiss": "あとで",
+    "browser": "Safari"
+  },
+  "settings": {
+    "title": "設定",
+    "dataMode": "データモード",
+    "mockDescription": "この端末だけのデモデータを使用中です。ページ再読み込みで初期状態に戻ります。",
+    "supabaseDescription": "Supabaseに接続してデータを保存します。",
+    "pwa": "アプリとして使う",
+    "privacy": "予約情報と画像は公開キャッシュに保存しません。"
+  }
+}

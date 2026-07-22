@@ -1,0 +1,35 @@
+{
+  "title": "예약",
+  "eyebrow": "RESERVATIONS",
+  "description": "호텔과 티켓의 중요한 정보를 여행별로 보관합니다.",
+  "new": "예약 추가",
+  "formTitle": "예약 정보",
+  "name": "예약명",
+  "type": "종류",
+  "date": "날짜",
+  "time": "시간",
+  "number": "예약 번호",
+  "bookedName": "예약자명",
+  "address": "주소",
+  "url": "원본 URL",
+  "deadline": "취소 기한",
+  "memo": "메모",
+  "save": "예약 저장",
+  "deleteTitle": "이 예약을 삭제할까요?",
+  "deleteBody": "삭제한 예약 정보는 되돌릴 수 없습니다.",
+  "emptyTitle": "예약 정보가 아직 없습니다",
+  "emptyBody": "호텔, 교통, 식당 등의 확인 정보를 모아둘 수 있습니다.",
+  "paymentPaid": "결제 완료",
+  "paymentPending": "미결제",
+  "types": {
+    "stay": "숙소",
+    "transport": "교통",
+    "food": "식당",
+    "activity": "체험・티켓",
+    "other": "기타"
+  },
+  "validation": {
+    "titleRequired": "예약명을 입력해 주세요",
+    "dateRequired": "예약 날짜를 입력해 주세요"
+  }
+}

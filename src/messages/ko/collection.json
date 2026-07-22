@@ -1,0 +1,42 @@
+{
+  "title": "클립",
+  "eyebrow": "COLLECTION",
+  "description": "마음에 든 것을 그대로 모아두고, 나중에 장소로 정리할 수 있습니다.",
+  "tabs": {
+    "url": "URL",
+    "image": "이미지",
+    "text": "메모"
+  },
+  "urlLabel": "발견한 페이지 URL",
+  "urlPlaceholder": "https://www.instagram.com/…",
+  "textLabel": "기억하고 싶은 내용",
+  "textPlaceholder": "홍대 골목에 있는 작은 소품 가게…",
+  "imageLabel": "스크린샷 선택",
+  "imageHelp": "JPEG·PNG·WebP, 한 장당 최대 10MB",
+  "addUrl": "URL 클립",
+  "addText": "메모 클립",
+  "addImage": "이미지 클립",
+  "adding": "저장 중…",
+  "filterAll": "전체",
+  "filterInbox": "정리 전",
+  "filterOrganized": "정리됨",
+  "organize": "장소로 정리",
+  "organized": "정리됨",
+  "sourceUrl": "원본 페이지",
+  "emptyTitle": "발견한 ‘가고 싶다’를 넣어 보세요",
+  "emptyBody": "URL, 스크린샷, 짧은 메모 무엇이든 괜찮습니다.",
+  "errors": {
+    "invalidUrl": "http:// 또는 https://로 시작하는 URL을 입력해 주세요",
+    "textRequired": "메모를 입력해 주세요",
+    "fileType": "JPEG·PNG·WebP 이미지를 선택해 주세요",
+    "fileSize": "이미지는 10MB 이하여야 합니다",
+    "saveFailed": "클립을 저장하지 못했습니다"
+  },
+  "upload": {
+    "waiting": "대기 중",
+    "uploading": "업로드 중 {progress}%",
+    "complete": "업로드 완료",
+    "failed": "업로드 실패",
+    "retry": "다시 업로드"
+  }
+}

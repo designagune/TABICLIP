@@ -1,0 +1,50 @@
+{
+  "listTitle": "旅のしおり",
+  "listEyebrow": "MY TRIPS",
+  "newTrip": "新しい旅をつくる",
+  "upcoming": "これから",
+  "active": "旅行中",
+  "past": "思い出",
+  "emptyTitle": "最初の旅をつくりましょう",
+  "emptyBody": "日付を決めたら、見つけた場所をクリップできます。",
+  "days": "{count, plural, =1 {#日} other {#日間}}",
+  "placesCount": "{count}スポット",
+  "form": {
+    "eyebrow": "新しい旅",
+    "title": "旅をつくる",
+    "description": "あとで変更できます。まずは行き先と日付だけで大丈夫です。",
+    "name": "旅の名前",
+    "namePlaceholder": "春のソウル、3泊4日",
+    "origin": "出発する国",
+    "destination": "旅する国",
+    "language": "旅で使う言語",
+    "startDate": "出発日",
+    "endDate": "帰国日",
+    "submit": "この旅をつくる",
+    "saving": "旅をつくっています…"
+  },
+  "countries": {
+    "JP": "日本",
+    "KR": "韓国"
+  },
+  "languages": {
+    "ja": "日本語",
+    "ko": "韓国語"
+  },
+  "validation": {
+    "titleRequired": "旅の名前を2文字以上で入力してください",
+    "countryRequired": "国を選んでください",
+    "dateRequired": "日付を選んでください",
+    "dateOrder": "帰国日は出発日以降にしてください"
+  },
+  "home": {
+    "nextTrip": "次の旅まで",
+    "daysLeft": "あと{count}日",
+    "collection": "未整理のクリップ",
+    "places": "行きたい場所",
+    "schedule": "予定済み",
+    "startCollecting": "行きたいをクリップ",
+    "todayMode": "今日の旅モード",
+    "reservations": "予約"
+  }
+}

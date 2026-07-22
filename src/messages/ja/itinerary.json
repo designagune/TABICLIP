@@ -1,0 +1,31 @@
+{
+  "title": "日程",
+  "eyebrow": "ITINERARY",
+  "description": "詰め込みすぎず、旅先で動ける順番に整えましょう。",
+  "day": "{date, date, short}",
+  "dayNumber": "DAY {number}",
+  "unscheduled": "時間未定",
+  "startTime": "開始時間",
+  "date": "日付",
+  "memo": "予定メモ",
+  "add": "この日に追加",
+  "added": "日程に追加しました",
+  "moveUp": "ひとつ前へ移動",
+  "moveDown": "ひとつ後へ移動",
+  "emptyTitle": "この日はまだ自由です",
+  "emptyBody": "スポットから行きたい場所を追加してみましょう。",
+  "today": {
+    "title": "今日の旅",
+    "eyebrow": "TRAVEL MODE",
+    "date": "今日 {date, date, long}",
+    "current": "いま・次の予定",
+    "next": "その次",
+    "address": "現地の住所",
+    "reservation": "予約情報を確認",
+    "openMap": "地図を開く",
+    "copyAddress": "住所をコピー",
+    "noPlanTitle": "今日の予定はまだありません",
+    "noPlanBody": "日程画面から場所を追加すると、ここですぐ確認できます。",
+    "offlineNotice": "オフライン中は最新の変更が反映されない場合があります。"
+  }
+}

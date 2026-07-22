@@ -1,0 +1,2 @@
+-- Local demo records are intentionally created by the application mock adapter.
+-- Supabase mode starts empty so every row is tied to a real local Auth user and RLS remains testable.

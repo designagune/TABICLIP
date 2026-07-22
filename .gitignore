@@ -1,0 +1,37 @@
+# dependencies
+node_modules/
+.pnpm-store/
+
+# Next.js and Storybook
+.next/
+out/
+storybook-static/
+
+# tests
+coverage/
+playwright-report/
+test-results/
+blob-report/
+
+# local Supabase
+.supabase/
+supabase/.temp/
+
+# environment
+.env
+.env.local
+.env.*.local
+
+# editors and operating systems
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# logs
+*.log
+pnpm-debug.log*
+
+# generated TypeScript
+*.tsbuildinfo
+next-env.d.ts

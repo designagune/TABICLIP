@@ -1,0 +1,42 @@
+{
+  "title": "クリップ",
+  "eyebrow": "COLLECTION",
+  "description": "気になったものをそのまま置いて、あとから場所に整理できます。",
+  "tabs": {
+    "url": "URL",
+    "image": "画像",
+    "text": "メモ"
+  },
+  "urlLabel": "見つけたページのURL",
+  "urlPlaceholder": "https://www.instagram.com/…",
+  "textLabel": "気になったこと",
+  "textPlaceholder": "弘大の路地にある小さな雑貨店…",
+  "imageLabel": "スクリーンショットを選ぶ",
+  "imageHelp": "JPEG・PNG・WebP、1枚10MBまで",
+  "addUrl": "URLをクリップ",
+  "addText": "メモをクリップ",
+  "addImage": "画像をクリップ",
+  "adding": "保存しています…",
+  "filterAll": "すべて",
+  "filterInbox": "未整理",
+  "filterOrganized": "整理済み",
+  "organize": "場所に整理",
+  "organized": "整理済み",
+  "sourceUrl": "元のページ",
+  "emptyTitle": "見つけた「行きたい」を入れてみましょう",
+  "emptyBody": "URL、スクリーンショット、短いメモのどれでも大丈夫です。",
+  "errors": {
+    "invalidUrl": "http:// または https:// から始まるURLを入力してください",
+    "textRequired": "メモを入力してください",
+    "fileType": "JPEG・PNG・WebP画像を選んでください",
+    "fileSize": "画像は10MB以下にしてください",
+    "saveFailed": "クリップを保存できませんでした"
+  },
+  "upload": {
+    "waiting": "待機中",
+    "uploading": "アップロード中 {progress}%",
+    "complete": "アップロード完了",
+    "failed": "アップロード失敗",
+    "retry": "再アップロード"
+  }
+}
