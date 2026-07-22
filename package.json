@@ -7,8 +7,10 @@
   },
   "packageManager": "pnpm@11.9.0",
   "scripts": {
-    "dev": "dotenv -e .env.example -- next dev",
-    "build": "dotenv -e .env.example -- next build",
+    "dev": "next dev",
+    "dev:mock": "dotenv -e .env.example -- next dev",
+    "build": "next build",
+    "build:mock": "dotenv -e .env.example -- next build",
     "start": "next start",
     "lint": "eslint . --max-warnings=0",
     "lint:fix": "eslint . --fix --max-warnings=0",

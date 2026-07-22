@@ -83,7 +83,7 @@ pnpm install --frozen-lockfile
 pnpm dev
 ```
 
-`pnpm dev`는 `.env.example`의 명시적인 mock 설정을 사용하므로 Supabase 없이 `/ja`와 `/ko`를 바로 확인할 수 있습니다. mock 데이터는 메모리 전용이며 새로고침하면 초기화됩니다.
+`pnpm dev`와 `pnpm build`는 Next.js의 표준 환경변수 로딩을 사용합니다. 실제 Supabase 개발은 `.env.local`을 사용하고, Supabase 없이 UI만 확인할 때는 `pnpm dev:mock`을 사용합니다. Mock 데이터는 메모리 전용이며 새로고침하면 초기화됩니다.
 
 실제 Supabase 모드는 `.env.local`을 만들고 다음 값을 설정합니다.
 
@@ -113,13 +113,15 @@ pnpm test:db
 pnpm exec supabase gen types typescript --local > src/lib/supabase/database.types.ts
 ```
 
-Migration은 RLS가 활성화된 9개 사용자 데이터 테이블과 `trip-private` bucket을 생성합니다. seed는 의도적으로 사용자 데이터를 만들지 않습니다. 실제 로컬 Auth 사용자가 생성될 때 profile trigger가 동작하며, UI mock fixture와 보안 테스트 fixture를 섞지 않습니다.
+Migration은 명시적인 Data API 권한과 RLS가 적용된 9개 사용자 데이터 테이블 및 `trip-private` bucket을 생성합니다. `anon`은 애플리케이션 테이블에 접근할 수 없고, `authenticated`는 테이블별 최소 CRUD 권한과 행 정책을 모두 통과해야 합니다. seed는 의도적으로 사용자 데이터를 만들지 않습니다. 실제 로컬 Auth 사용자가 생성될 때 profile trigger가 동작하며, UI mock fixture와 보안 테스트 fixture를 섞지 않습니다.
 
 ## 명령어
 
 ```text
-pnpm dev                 개발 서버(mock 기본)
+pnpm dev                 개발 서버(.env.local 사용)
+pnpm dev:mock            Supabase 없는 Mock 개발 서버
 pnpm build               프로덕션 빌드
+pnpm build:mock          Mock 환경 프로덕션 빌드
 pnpm start               프로덕션 서버
 pnpm lint                warning을 실패로 처리하는 ESLint
 pnpm lint:fix            자동 수정 가능한 lint
@@ -142,7 +144,7 @@ pnpm check               lint→typecheck→format→coverage→build
 - Next.js production build: passing
 - Storybook: 12 product targets/states, static build passing
 - Playwright: 2 core/accessibility flows + 4 mobile visual snapshots passing
-- pgTAP: 11 owner/member/stranger/Storage RLS assertions authored; 이 작업 환경에서는 Docker Desktop이 실행되지 않아 로컬 실행은 확인하지 못했고 전용 CI job에서 실행하도록 구성했습니다.
+- pgTAP: 15 Data API grant/owner/member/stranger/Storage RLS assertions authored; 원격 개발 프로젝트에는 `202607210001` migration이 적용됐습니다. 이 작업 환경에서는 Docker Desktop이 실행되지 않아 pgTAP 실행은 확인하지 못했고 전용 CI job에서 실행하도록 구성했습니다.
 
 전역 threshold는 lines/statements 70%, functions 65%, branches 60%입니다. 자세한 범위와 제외 이유는 [testing](docs/testing.md)에 기록했습니다.
 

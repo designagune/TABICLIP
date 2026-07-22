@@ -9,7 +9,7 @@
 - Playwright runs the complete trip → URL/image clip → place → itinerary → travel-mode flow at 390×844, plus keyboard/error smoke checks.
 - Four screenshots cover collection, place grouping, itinerary, and travel mode.
 - Browser time is fixed to 2026-07-21 in E2E tests so date-driven mock data and visual snapshots remain deterministic.
-- pgTAP asserts owner/member/stranger RLS behavior against local Supabase.
+- pgTAP asserts explicit Data API grants plus owner/member/stranger RLS behavior against local Supabase.
 
 ## Coverage
 

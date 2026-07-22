@@ -1,7 +1,7 @@
 begin;
 
 create extension if not exists pgtap with schema extensions;
-select plan(11);
+select plan(15);
 
 insert into auth.users (
   id, instance_id, aud, role, email, encrypted_password, email_confirmed_at,
@@ -50,6 +50,23 @@ insert into public.attachments (
   'cccccccc-cccc-cccc-cccc-cccccccccccc',
   'users/11111111-1111-1111-1111-111111111111/trips/aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa/collection/dddddddd-dddd-dddd-dddd-dddddddddddd.jpg',
   'image/jpeg', 1024
+);
+
+select ok(
+  has_table_privilege('authenticated', 'public.trips', 'select'),
+  'authenticated users receive explicit trip read access'
+);
+select ok(
+  has_table_privilege('authenticated', 'public.trips', 'insert'),
+  'authenticated users receive explicit trip create access'
+);
+select ok(
+  not has_table_privilege('anon', 'public.trips', 'select'),
+  'anonymous users cannot reach trip rows through the Data API'
+);
+select ok(
+  not has_table_privilege('authenticated', 'public.profiles', 'insert'),
+  'profiles are created only by the auth trigger'
 );
 
 set local role authenticated;

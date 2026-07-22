@@ -236,8 +236,34 @@ $$;
 
 revoke all on function public.is_trip_member(uuid) from public;
 revoke all on function public.can_edit_trip(uuid) from public;
+revoke all on function public.set_updated_at() from public;
+revoke all on function public.keep_trip_owner() from public;
+revoke all on function public.handle_new_user() from public;
 grant execute on function public.is_trip_member(uuid) to authenticated;
 grant execute on function public.can_edit_trip(uuid) to authenticated;
+
+alter default privileges for role postgres in schema public
+  revoke select, insert, update, delete on tables from anon, authenticated, service_role;
+alter default privileges for role postgres in schema public
+  revoke usage, select on sequences from anon, authenticated, service_role;
+alter default privileges for role postgres in schema public
+  revoke execute on functions from public, anon, authenticated, service_role;
+
+revoke all on all tables in schema public from anon, authenticated, service_role;
+
+grant select, update on table public.profiles to authenticated;
+grant select, insert, update, delete on table
+  public.trips,
+  public.trip_members,
+  public.collected_items,
+  public.places,
+  public.trip_places,
+  public.itinerary_items,
+  public.reservations
+to authenticated;
+grant select, insert, delete on table public.attachments to authenticated;
+
+grant select, insert, update, delete on all tables in schema public to service_role;
 
 alter table public.profiles enable row level security;
 alter table public.trips enable row level security;

@@ -46,4 +46,5 @@ Supabase schema, RLS, private Storage policies, and adapters must be ready witho
 - `pnpm build`: passed with 16 static/dynamic route entries and locale variants.
 - `pnpm build-storybook`: passed with the official Next.js+Vite integration and 12 product targets/states.
 - `pnpm test:e2e`: 6/6 passed (2 workflow/accessibility and 4 mobile screenshots).
-- `pnpm test:db`: not executed locally. `supabase start` failed because Docker Desktop was not running (`//./pipe/docker_engine` missing). Eleven pgTAP assertions and a Docker-backed CI job are present; this result is intentionally not reported as passing.
+- Remote development database: migration `202607210001` was accepted and recorded by the linked Supabase project on 2026-07-22.
+- `pnpm test:db`: not executed locally. `supabase start` failed because Docker Desktop was not running (`//./pipe/docker_engine` missing). Fifteen Data API grant/RLS/Storage pgTAP assertions and a Docker-backed CI job are present; this result is intentionally not reported as passing.
