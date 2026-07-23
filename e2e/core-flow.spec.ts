@@ -65,6 +65,16 @@ test('a traveler turns a discovery into today’s itinerary', async ({page}) => 
   await placeCard.getByRole('button', {name: '日程に追加'}).click();
   await page.getByLabel('開始時間').fill('13:30');
   await page.getByRole('button', {name: 'この日に追加'}).click();
+  await expect(placeCard).toContainText('DAY 1');
+  await expect(placeCard).toContainText('13:30');
+  await placeCard.getByRole('button', {name: '日程を編集'}).click();
+  await expect(page.getByLabel('開始時間')).toHaveValue('13:30');
+  await page.getByLabel('開始時間').fill('14:00');
+  await page.getByRole('button', {name: '変更を保存'}).click();
+  await expect(placeCard).toContainText('14:00');
+  await expect(
+    placeCard.getByRole('button', {name: '日程を編集'})
+  ).toBeVisible();
 
   await page.getByRole('link', {name: '今日', exact: true}).click();
   await expect(

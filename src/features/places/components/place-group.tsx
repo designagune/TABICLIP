@@ -1,14 +1,20 @@
+import type {ItineraryItem} from '@/features/itinerary/types/itinerary';
+
 import type {TripPlace} from '../types/place';
 import {PlaceCard} from './place-card';
 
 export function PlaceGroup({
   region,
   places,
-  onAddToSchedule
+  itineraryByPlace,
+  tripDates,
+  onSelectSchedule
 }: {
   region: string;
   places: TripPlace[];
-  onAddToSchedule: (place: TripPlace) => void;
+  itineraryByPlace: ReadonlyMap<string, ItineraryItem>;
+  tripDates: string[];
+  onSelectSchedule: (place: TripPlace) => void;
 }) {
   return (
     <section>
@@ -20,13 +26,21 @@ export function PlaceGroup({
         <span className="bg-border h-px flex-1" />
       </div>
       <div className="grid gap-3 sm:grid-cols-2">
-        {places.map((place) => (
-          <PlaceCard
-            key={place.id}
-            tripPlace={place}
-            onAddToSchedule={onAddToSchedule}
-          />
-        ))}
+        {places.map((place) => {
+          const itineraryItem = itineraryByPlace.get(place.id) ?? null;
+          const dateIndex = itineraryItem
+            ? tripDates.indexOf(itineraryItem.date)
+            : -1;
+          return (
+            <PlaceCard
+              key={place.id}
+              tripPlace={place}
+              itineraryItem={itineraryItem}
+              dayNumber={dateIndex >= 0 ? dateIndex + 1 : null}
+              onSelectSchedule={onSelectSchedule}
+            />
+          );
+        })}
       </div>
     </section>
   );

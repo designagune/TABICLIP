@@ -17,10 +17,10 @@
 Configured global thresholds are lines/statements 70%, functions 65%, and branches 60%. The measured configured business-logic scope currently reports:
 
 ```text
-statements 86.82%
-branches   86.48%
-functions  82.95%
-lines      90.34%
+statements 87.09%
+branches   85.82%
+functions  83.69%
+lines      90.90%
 ```
 
 Coverage includes core schemas, date rules, stores, row mappers, mock persistence, query keys, and browser platform behavior. Next.js route shells, metadata/configuration, generated Supabase types, stories, fixtures, and low-level UI primitives are not counted. Component and E2E tests still exercise UI behavior outside that numeric scope.

@@ -12,14 +12,18 @@ import {Textarea} from '@/components/ui/textarea';
 import type {TripPlace} from '@/features/places/types/place';
 import {enumerateDates} from '@/shared/date/date-utils';
 
+import type {ItineraryItem} from '../types/itinerary';
+
 export function AddToItineraryModal({
   place,
+  itineraryItem,
   tripDates,
   pending,
   onClose,
   onSave
 }: {
   place: TripPlace | null;
+  itineraryItem: ItineraryItem | null;
   tripDates: {start: string; end: string};
   pending: boolean;
   onClose: () => void;
@@ -33,9 +37,11 @@ export function AddToItineraryModal({
   const t = useTranslations('itinerary');
   const tc = useTranslations('common.actions');
   const dates = enumerateDates(tripDates.start, tripDates.end);
-  const [date, setDate] = useState(dates[0] ?? '');
-  const [startTime, setStartTime] = useState('10:00');
-  const [memo, setMemo] = useState('');
+  const [date, setDate] = useState(itineraryItem?.date ?? dates[0] ?? '');
+  const [startTime, setStartTime] = useState(
+    itineraryItem?.startTime ?? '10:00'
+  );
+  const [memo, setMemo] = useState(itineraryItem?.memo ?? '');
 
   return (
     <Modal
@@ -98,7 +104,7 @@ export function AddToItineraryModal({
           {pending ? (
             <LoaderCircle aria-hidden="true" className="size-5 animate-spin" />
           ) : null}
-          {t('add')}
+          {t(itineraryItem ? 'saveChanges' : 'add')}
         </Button>
       </form>
     </Modal>

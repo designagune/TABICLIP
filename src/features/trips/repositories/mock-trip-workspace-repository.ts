@@ -294,6 +294,15 @@ export function createMockTripWorkspaceRepository(
         (item) => item.id === input.tripPlaceId && item.tripId === input.tripId
       );
       if (!tripPlace) throw new Error('PLACE_NOT_FOUND');
+      if (
+        database.itineraryItems.some(
+          (item) =>
+            item.tripId === input.tripId &&
+            item.tripPlaceId === input.tripPlaceId
+        )
+      ) {
+        throw new Error('ITINERARY_PLACE_ALREADY_SCHEDULED');
+      }
       const now = timestamp();
       const sameDayItems = database.itineraryItems.filter(
         (item) => item.tripId === input.tripId && item.date === input.date
@@ -320,6 +329,29 @@ export function createMockTripWorkspaceRepository(
       tripPlace.updatedAt = now;
       database.itineraryItems.push(itineraryItem);
       return clone(itineraryItem);
+    },
+
+    async updateItineraryItem(input) {
+      const item = database.itineraryItems.find(
+        (candidate) =>
+          candidate.id === input.id && candidate.tripId === input.tripId
+      );
+      if (!item) throw new Error('ITINERARY_ITEM_NOT_FOUND');
+      const dateChanged = item.date !== input.date;
+      const sortOrder = dateChanged
+        ? database.itineraryItems.filter(
+            (candidate) =>
+              candidate.tripId === input.tripId && candidate.date === input.date
+          ).length
+        : item.sortOrder;
+      Object.assign(item, {
+        date: input.date,
+        startTime: input.startTime || null,
+        memo: input.memo ?? '',
+        sortOrder,
+        updatedAt: timestamp()
+      });
+      return clone(item);
     },
 
     async moveItineraryItem(tripId, itemId, direction) {

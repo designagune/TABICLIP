@@ -4,7 +4,8 @@ import type {
 } from '@/features/collection/types/collected-item';
 import type {
   AddItineraryItemInput,
-  ItineraryItem
+  ItineraryItem,
+  UpdateItineraryItemInput
 } from '@/features/itinerary/types/itinerary';
 import type {
   OrganizeCollectedItemInput,
@@ -26,6 +27,7 @@ export interface TripWorkspaceRepository {
   addCollectedItem(input: AddCollectedItemInput): Promise<CollectedItem>;
   organizeCollectedItem(input: OrganizeCollectedItemInput): Promise<TripPlace>;
   addItineraryItem(input: AddItineraryItemInput): Promise<ItineraryItem>;
+  updateItineraryItem(input: UpdateItineraryItemInput): Promise<ItineraryItem>;
   moveItineraryItem(
     tripId: string,
     itemId: string,

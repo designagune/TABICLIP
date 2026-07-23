@@ -70,13 +70,44 @@ describe('mock trip workspace repository', () => {
     expect(
       workspace.places.find((item) => item.id === tripPlace.id)?.status
     ).toBe('planned');
+    await expect(
+      repository.addItineraryItem({
+        tripId: 'demo-trip',
+        tripPlaceId: tripPlace.id,
+        date: '2026-07-23'
+      })
+    ).rejects.toThrow('ITINERARY_PLACE_ALREADY_SCHEDULED');
+    const updated = await repository.updateItineraryItem({
+      id: itinerary.id,
+      tripId: 'demo-trip',
+      date: '2026-07-23',
+      startTime: '13:15',
+      memo: '점심 이후 방문'
+    });
+    expect(updated).toMatchObject({
+      date: '2026-07-23',
+      startTime: '13:15',
+      memo: '점심 이후 방문'
+    });
   });
 
   it('reorders same-day itinerary items without crossing dates', async () => {
-    const workspace = await repository.getWorkspace('demo-trip');
-    const place = workspace.places[0];
-    expect(place).toBeDefined();
-    if (!place) return;
+    const clip = await repository.addCollectedItem({
+      tripId: 'demo-trip',
+      type: 'text',
+      originalText: '두 번째 장소'
+    });
+    const place = await repository.organizeCollectedItem({
+      tripId: 'demo-trip',
+      collectedItemId: clip.id,
+      localName: '광장시장',
+      translatedName: '広蔵市場',
+      addressLocal: '서울특별시 종로구 창경궁로 88',
+      addressTranslated: 'ソウル特別市 鍾路区 昌慶宮路88',
+      region: '종로',
+      category: 'food',
+      memo: ''
+    });
     const second = await repository.addItineraryItem({
       tripId: 'demo-trip',
       tripPlaceId: place.id,

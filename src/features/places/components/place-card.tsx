@@ -1,20 +1,30 @@
 'use client';
 
-import {CalendarPlus, MapPinned, MoveUpRight} from 'lucide-react';
+import {
+  CalendarCheck,
+  CalendarPlus,
+  MapPinned,
+  MoveUpRight
+} from 'lucide-react';
 import {useTranslations} from 'next-intl';
 
 import {Badge} from '@/components/ui/badge';
 import {Button} from '@/components/ui/button';
+import type {ItineraryItem} from '@/features/itinerary/types/itinerary';
 import {platformService} from '@/shared/platform/browser-platform-service';
 
 import type {TripPlace} from '../types/place';
 
 export function PlaceCard({
   tripPlace,
-  onAddToSchedule
+  itineraryItem,
+  dayNumber,
+  onSelectSchedule
 }: {
   tripPlace: TripPlace;
-  onAddToSchedule: (place: TripPlace) => void;
+  itineraryItem: ItineraryItem | null;
+  dayNumber: number | null;
+  onSelectSchedule: (place: TripPlace) => void;
 }) {
   const t = useTranslations('places');
   const place = tripPlace.place;
@@ -45,6 +55,18 @@ export function PlaceCard({
         {tripPlace.memo ? (
           <p className="mt-3 text-sm leading-6">{tripPlace.memo}</p>
         ) : null}
+        {itineraryItem ? (
+          <div className="bg-primary/8 text-primary mt-4 flex items-center gap-2 rounded-xl px-3 py-2.5 text-sm font-bold">
+            <CalendarCheck aria-hidden="true" className="size-4 shrink-0" />
+            <span>
+              {t('scheduledFor', {
+                day: dayNumber ?? 1,
+                date: itineraryItem.date,
+                time: itineraryItem.startTime ?? t('timeUnscheduled')
+              })}
+            </span>
+          </div>
+        ) : null}
         <div className="mt-4 grid grid-cols-2 gap-2">
           <Button
             type="button"
@@ -59,9 +81,13 @@ export function PlaceCard({
             <MoveUpRight aria-hidden="true" className="size-4" />
             {t('openMap')}
           </Button>
-          <Button type="button" onClick={() => onAddToSchedule(tripPlace)}>
-            <CalendarPlus aria-hidden="true" className="size-4" />
-            {t('addToSchedule')}
+          <Button type="button" onClick={() => onSelectSchedule(tripPlace)}>
+            {itineraryItem ? (
+              <CalendarCheck aria-hidden="true" className="size-4" />
+            ) : (
+              <CalendarPlus aria-hidden="true" className="size-4" />
+            )}
+            {t(itineraryItem ? 'editSchedule' : 'addToSchedule')}
           </Button>
         </div>
       </div>

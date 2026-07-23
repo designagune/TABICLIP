@@ -24,3 +24,11 @@ export interface AddItineraryItemInput {
   startTime?: string;
   memo?: string;
 }
+
+export interface UpdateItineraryItemInput {
+  id: string;
+  tripId: string;
+  date: string;
+  startTime?: string;
+  memo?: string;
+}

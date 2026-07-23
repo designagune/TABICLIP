@@ -3,7 +3,10 @@
 import {useMutation, useQuery, useQueryClient} from '@tanstack/react-query';
 
 import type {AddCollectedItemInput} from '@/features/collection/types/collected-item';
-import type {AddItineraryItemInput} from '@/features/itinerary/types/itinerary';
+import type {
+  AddItineraryItemInput,
+  UpdateItineraryItemInput
+} from '@/features/itinerary/types/itinerary';
 import type {OrganizeCollectedItemInput} from '@/features/places/types/place';
 import type {
   CreateReservationInput,
@@ -69,6 +72,13 @@ export function useOrganizeCollectedItem(tripId: string) {
 export function useAddItineraryItem(tripId: string) {
   return useWorkspaceMutation<AddItineraryItemInput, unknown>(tripId, (input) =>
     getTripWorkspaceRepository().addItineraryItem(input)
+  );
+}
+
+export function useUpdateItineraryItem(tripId: string) {
+  return useWorkspaceMutation<UpdateItineraryItemInput, unknown>(
+    tripId,
+    (input) => getTripWorkspaceRepository().updateItineraryItem(input)
   );
 }
 

@@ -324,6 +324,16 @@ export function createSupabaseTripWorkspaceRepository(
     },
 
     async addItineraryItem(input) {
+      const existingResult = await client
+        .from('itinerary_items')
+        .select('id')
+        .eq('trip_id', input.tripId)
+        .eq('trip_place_id', input.tripPlaceId)
+        .maybeSingle();
+      if (existingResult.error) throw new Error(existingResult.error.message);
+      if (existingResult.data) {
+        throw new Error('ITINERARY_PLACE_ALREADY_SCHEDULED');
+      }
       const placeResult = await client
         .from('trip_places')
         .select('*')
@@ -366,6 +376,41 @@ export function createSupabaseTripWorkspaceRepository(
       return mapItineraryItem(
         requireData(insertResult.data, insertResult.error),
         mapTripPlace(tripPlaceRow, basePlace)
+      );
+    },
+
+    async updateItineraryItem(input) {
+      const currentResult = await client
+        .from('itinerary_items')
+        .select('*')
+        .eq('id', input.id)
+        .eq('trip_id', input.tripId)
+        .single();
+      const current = requireData(currentResult.data, currentResult.error);
+      let sortOrder = current.sort_order;
+      if (current.date !== input.date) {
+        const countResult = await client
+          .from('itinerary_items')
+          .select('id', {count: 'exact', head: true})
+          .eq('trip_id', input.tripId)
+          .eq('date', input.date);
+        if (countResult.error) throw new Error(countResult.error.message);
+        sortOrder = countResult.count ?? 0;
+      }
+      const updateResult = await client
+        .from('itinerary_items')
+        .update({
+          date: input.date,
+          start_time: input.startTime || null,
+          memo: input.memo ?? '',
+          sort_order: sortOrder
+        })
+        .eq('id', input.id)
+        .eq('trip_id', input.tripId)
+        .select()
+        .single();
+      return mapItineraryItem(
+        requireData(updateResult.data, updateResult.error)
       );
     },
 

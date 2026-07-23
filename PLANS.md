@@ -42,7 +42,7 @@ Supabase schema, RLS, private Storage policies, and adapters must be ready witho
 - `pnpm lint`: passed with zero warnings.
 - `pnpm typecheck`: passed in strict mode.
 - `pnpm format:check`: passed after final formatting.
-- `pnpm test:coverage`: 46/46 passed; statements 86.82%, branches 86.48%, functions 82.95%, lines 90.34% in the configured core scope.
+- `pnpm test:coverage`: 51/51 passed; statements 87.09%, branches 85.82%, functions 83.69%, lines 90.90% in the configured core scope.
 - `pnpm build`: passed with 16 static/dynamic route entries and locale variants.
 - `pnpm build-storybook`: passed with the official Next.js+Vite integration and 12 product targets/states.
 - `pnpm test:e2e`: 6/6 passed (2 workflow/accessibility and 4 mobile screenshots).
