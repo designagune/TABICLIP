@@ -43,6 +43,12 @@ users/{userId}/trips/{tripId}/reservations/{attachmentId}.{ext}
 
 RLS verifies both the path owner and trip editing permission. The `attachments` row is the authorization link used for reads. When an attachment insert fails after upload, the adapter removes the object and source row. A production cleanup job should later reconcile rare network failures. Signed URLs are short-lived presentation values and are never stored.
 
+Collection previews use signed URLs that expire after ten minutes. The browser fetches them directly without the Next.js image optimization proxy so a private response is not retained in a shared optimizer cache beyond the Storage authorization window.
+
 ## Image policy
 
-The client validates MIME type and size before upload; Storage repeats those constraints. Image dimensions are optional metadata. A future background job may strip EXIF and create responsive variants, but the MVP does not claim optimization or OCR.
+The client validates MIME type and size before upload; Storage repeats those constraints. New collection uploads record decoded image dimensions so responsive previews preserve the original aspect ratio. Older attachments without dimensions are measured after their signed image first loads. A future background job may strip EXIF and create responsive variants, but the MVP does not claim optimization or OCR.
+
+## Itinerary place uniqueness
+
+A trip place can belong to at most one itinerary item. Once scheduled, the place card links to that existing item for date, time, and memo edits instead of creating another row. Reservation-only itinerary items remain unaffected because their `trip_place_id` is null.

@@ -77,6 +77,8 @@ function createSeed(clock: Clock): MockDatabase {
         originalText: null,
         memo: '聖水で朝から開いているベーカリーカフェ',
         imagePreviewUrl: null,
+        imageWidth: null,
+        imageHeight: null,
         status: 'inbox',
         createdAt: timestamp,
         updatedAt: timestamp
@@ -90,6 +92,8 @@ function createSeed(clock: Clock): MockDatabase {
         originalText: 'ソウルの森。朝の散歩に良さそう。',
         memo: null,
         imagePreviewUrl: null,
+        imageWidth: null,
+        imageHeight: null,
         status: 'organized',
         createdAt: timestamp,
         updatedAt: timestamp
@@ -225,6 +229,8 @@ export function createMockTripWorkspaceRepository(
         originalText: input.originalText ?? null,
         memo: input.memo ?? null,
         imagePreviewUrl: input.image ? URL.createObjectURL(input.image) : null,
+        imageWidth: null,
+        imageHeight: null,
         status: 'inbox',
         createdAt: now,
         updatedAt: now

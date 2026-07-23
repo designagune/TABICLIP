@@ -1,12 +1,50 @@
 'use client';
 
 import {FileText, Globe2, ImageIcon, MoveUpRight} from 'lucide-react';
+import Image from 'next/image';
 import {useTranslations} from 'next-intl';
+import {useState} from 'react';
 
 import {Badge} from '@/components/ui/badge';
 import {Button} from '@/components/ui/button';
 
 import type {CollectedItem} from '../types/collected-item';
+
+type ImageSize = {width: number; height: number};
+
+function validImageSize(item: CollectedItem): ImageSize | null {
+  return item.imageWidth && item.imageHeight
+    ? {width: item.imageWidth, height: item.imageHeight}
+    : null;
+}
+
+function CollectedItemImage({item}: {item: CollectedItem}) {
+  const [size, setSize] = useState<ImageSize | null>(() =>
+    validImageSize(item)
+  );
+  if (!item.imagePreviewUrl) return null;
+
+  return (
+    <div className="bg-muted mb-4 overflow-hidden rounded-2xl">
+      <Image
+        src={item.imagePreviewUrl}
+        alt={item.originalText ?? item.memo ?? ''}
+        width={size?.width ?? 1}
+        height={size?.height ?? 1}
+        sizes="(max-width: 640px) calc(100vw - 72px), 560px"
+        className="block h-auto w-full"
+        unoptimized
+        onLoad={(event) => {
+          if (size) return;
+          const {naturalWidth, naturalHeight} = event.currentTarget;
+          if (naturalWidth > 0 && naturalHeight > 0) {
+            setSize({width: naturalWidth, height: naturalHeight});
+          }
+        }}
+      />
+    </div>
+  );
+}
 
 export function CollectedItemCard({
   item,
@@ -22,6 +60,7 @@ export function CollectedItemCard({
 
   return (
     <article className="bg-card rounded-[1.5rem] border p-4 shadow-[0_8px_24px_rgb(32_37_31_/_5%)]">
+      <CollectedItemImage item={item} />
       <div className="flex items-start gap-3">
         <span className="bg-muted grid size-11 shrink-0 place-items-center rounded-xl">
           <Icon aria-hidden="true" className="text-muted-foreground size-5" />

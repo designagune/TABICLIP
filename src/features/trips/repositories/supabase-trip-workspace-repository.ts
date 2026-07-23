@@ -14,6 +14,12 @@ import type {CreateTripInput} from '../types/trip';
 import type {TripWorkspaceRepository} from './trip-workspace-repository';
 
 type Client = SupabaseClient<Database>;
+const SIGNED_IMAGE_URL_TTL_SECONDS = 10 * 60;
+type CollectionImagePreview = {
+  url: string;
+  width: number | null;
+  height: number | null;
+};
 
 function requireData<T>(data: T | null, error: {message: string} | null): T {
   if (error) throw new Error(error.message);
@@ -33,6 +39,55 @@ function sourcePlatform(url?: string): string | null {
     return new URL(url).hostname.replace(/^www\./, '');
   } catch {
     return 'web';
+  }
+}
+
+async function createCollectionPreviewUrls(
+  client: Client,
+  attachments: Array<{
+    collected_item_id: string | null;
+    storage_path: string;
+    width: number | null;
+    height: number | null;
+  }>
+): Promise<Map<string, CollectionImagePreview>> {
+  const entries = await Promise.all(
+    attachments.flatMap((attachment) => {
+      const collectedItemId = attachment.collected_item_id;
+      return collectedItemId
+        ? [
+            (async () => {
+              const {data, error} = await client.storage
+                .from('trip-private')
+                .createSignedUrl(
+                  attachment.storage_path,
+                  SIGNED_IMAGE_URL_TTL_SECONDS
+                );
+              if (error) throw new Error(error.message);
+              return [
+                collectedItemId,
+                {
+                  url: data.signedUrl,
+                  width: attachment.width,
+                  height: attachment.height
+                }
+              ] as const;
+            })()
+          ]
+        : [];
+    })
+  );
+  return new Map(entries);
+}
+
+async function readImageDimensions(
+  file: File
+): Promise<{width: number; height: number}> {
+  const bitmap = await createImageBitmap(file);
+  try {
+    return {width: bitmap.width, height: bitmap.height};
+  } finally {
+    bitmap.close();
   }
 }
 
@@ -71,6 +126,7 @@ export function createSupabaseTripWorkspaceRepository(
       const [
         tripResult,
         collectionResult,
+        attachmentResult,
         tripPlacesResult,
         itineraryResult,
         reservationResult
@@ -81,6 +137,11 @@ export function createSupabaseTripWorkspaceRepository(
           .select('*')
           .eq('trip_id', tripId)
           .order('created_at', {ascending: false}),
+        client
+          .from('attachments')
+          .select('collected_item_id, storage_path, width, height')
+          .eq('trip_id', tripId)
+          .not('collected_item_id', 'is', null),
         client.from('trip_places').select('*').eq('trip_id', tripId),
         client
           .from('itinerary_items')
@@ -98,11 +159,18 @@ export function createSupabaseTripWorkspaceRepository(
       const trip = mapTrip(requireData(tripResult.data, tripResult.error));
       if (collectionResult.error)
         throw new Error(collectionResult.error.message);
+      if (attachmentResult.error)
+        throw new Error(attachmentResult.error.message);
       if (tripPlacesResult.error)
         throw new Error(tripPlacesResult.error.message);
       if (itineraryResult.error) throw new Error(itineraryResult.error.message);
       if (reservationResult.error)
         throw new Error(reservationResult.error.message);
+
+      const imagePreviewUrls = await createCollectionPreviewUrls(
+        client,
+        attachmentResult.data
+      );
 
       const placeIds = tripPlacesResult.data.map((row) => row.place_id);
       const placesResult = placeIds.length
@@ -120,7 +188,9 @@ export function createSupabaseTripWorkspaceRepository(
 
       return {
         trip,
-        collectedItems: collectionResult.data.map(mapCollectedItem),
+        collectedItems: collectionResult.data.map((row) =>
+          mapCollectedItem(row, imagePreviewUrls.get(row.id) ?? null)
+        ),
         places: tripPlaces,
         itineraryItems: itineraryResult.data.map((row) =>
           mapItineraryItem(
@@ -136,6 +206,9 @@ export function createSupabaseTripWorkspaceRepository(
 
     async addCollectedItem(input) {
       const ownerId = await requireUserId(client);
+      const imageDimensions = input.image
+        ? await readImageDimensions(input.image)
+        : null;
       const response = await client
         .from('collected_items')
         .insert({
@@ -175,7 +248,9 @@ export function createSupabaseTripWorkspaceRepository(
           collected_item_id: row.id,
           storage_path: storagePath,
           mime_type: input.image.type,
-          file_size: input.image.size
+          file_size: input.image.size,
+          width: imageDimensions?.width ?? null,
+          height: imageDimensions?.height ?? null
         });
         if (attachment.error) {
           await client.storage.from('trip-private').remove([storagePath]);
@@ -184,7 +259,16 @@ export function createSupabaseTripWorkspaceRepository(
         }
       }
 
-      return mapCollectedItem(row);
+      return mapCollectedItem(
+        row,
+        imageDimensions
+          ? {
+              url: null,
+              width: imageDimensions.width,
+              height: imageDimensions.height
+            }
+          : null
+      );
     },
 
     async organizeCollectedItem(input) {

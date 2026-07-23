@@ -30,6 +30,8 @@ export const collectedItemFixture: CollectedItem = {
   originalText: null,
   memo: '聖水で朝から開いている、塩パンが人気の小さなベーカリーカフェ',
   imagePreviewUrl: null,
+  imageWidth: null,
+  imageHeight: null,
   status: 'inbox',
   createdAt: timestamp,
   updatedAt: timestamp

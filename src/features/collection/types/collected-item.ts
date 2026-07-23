@@ -10,6 +10,8 @@ export interface CollectedItem {
   originalText: string | null;
   memo: string | null;
   imagePreviewUrl: string | null;
+  imageWidth: number | null;
+  imageHeight: number | null;
   status: CollectedItemStatus;
   createdAt: string;
   updatedAt: string;

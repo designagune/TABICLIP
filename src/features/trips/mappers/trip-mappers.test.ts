@@ -70,6 +70,33 @@ describe('Supabase row mappers', () => {
         updated_at: timestamp
       })
     ).toMatchObject({type: 'url', imagePreviewUrl: null});
+    expect(
+      mapCollectedItem(
+        {
+          id: 'image-clip',
+          trip_id: 'trip',
+          type: 'image',
+          source_url: null,
+          source_platform: null,
+          original_text: null,
+          memo: null,
+          status: 'inbox',
+          created_at: timestamp,
+          updated_at: timestamp
+        },
+        {
+          url: 'https://example.supabase.co/storage/v1/object/sign/private/image.jpg',
+          width: 1080,
+          height: 1920
+        }
+      )
+    ).toMatchObject({
+      type: 'image',
+      imagePreviewUrl:
+        'https://example.supabase.co/storage/v1/object/sign/private/image.jpg',
+      imageWidth: 1080,
+      imageHeight: 1920
+    });
     expect(mapPlace(placeRow)).toMatchObject({
       localName: '서울숲',
       category: 'sightseeing'

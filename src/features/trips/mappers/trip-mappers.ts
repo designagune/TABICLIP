@@ -40,7 +40,12 @@ export function mapTrip(row: Tables['trips']['Row']): Trip {
 }
 
 export function mapCollectedItem(
-  row: Tables['collected_items']['Row']
+  row: Tables['collected_items']['Row'],
+  imagePreview: {
+    url: string | null;
+    width: number | null;
+    height: number | null;
+  } | null = null
 ): CollectedItem {
   return {
     id: row.id,
@@ -50,7 +55,9 @@ export function mapCollectedItem(
     sourcePlatform: row.source_platform,
     originalText: row.original_text,
     memo: row.memo,
-    imagePreviewUrl: null,
+    imagePreviewUrl: imagePreview?.url ?? null,
+    imageWidth: imagePreview?.width ?? null,
+    imageHeight: imagePreview?.height ?? null,
     status: row.status as CollectedItemStatus,
     createdAt: row.created_at,
     updatedAt: row.updated_at
